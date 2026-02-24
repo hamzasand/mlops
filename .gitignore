@@ -1,0 +1,132 @@
+# ===============================
+# Python Bytecode
+# ===============================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ===============================
+# Virtual Environments
+# ===============================
+myvenv/
+
+# ===============================
+# Jupyter Notebook
+# ===============================
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# ===============================
+# Environment Variables
+# ===============================
+.env
+
+# ===============================
+# Logs & Debug Files
+# ===============================
+logs/
+*.log
+*.out
+*.err
+
+# ===============================
+# OS Files
+# ===============================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===============================
+# IDE / Editor Settings
+# ===============================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ===============================
+# Python Packaging
+# ===============================
+build/
+dist/
+*.egg-info/
+.eggs/
+*.whl
+
+# ===============================
+# Testing & Coverage
+# ===============================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# ===============================
+# Machine Learning / AI Files
+# ===============================
+
+# Datasets (usually large)
+data/
+datasets/
+*.csv
+*.tsv
+*.jsonl
+
+# Model Weights
+models/
+checkpoints/
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.pb
+*.tflite
+*.joblib
+*.pkl
+
+# TensorBoard
+runs/
+tensorboard/
+events.out.tfevents.*
+
+# Experiment Tracking
+mlruns/
+wandb/
+
+# ===============================
+# Cache Files
+# ===============================
+.cache/
+*.cache
+
+# ===============================
+# Temporary Files
+# ===============================
+tmp/
+temp/
+*.tmp
+
+# ===============================
+# Docker (optional)
+# ===============================
+*.pid
+*.seed
+
+# ===============================
+# Secrets / Keys
+# ===============================
+*.pem
+*.key
+*.crt
+credentials.json
+secrets.json
+
+# ===============================
+# Mac/Linux Swap Files
+# ===============================
+*~
+*.swp
+*.swo

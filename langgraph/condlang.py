@@ -1,0 +1,58 @@
+from dotenv import load_dotenv
+from typing_extensions import TypedDict
+from typing import Optional, Literal
+from langgraph.graph import StateGraph, START, END
+from mlops.rag_queue import client
+from openai import OpenAI
+
+load_dotenv()
+
+class State(TypedDict):
+    user_query: str
+    llm_output: Optional[str]
+    is_good: Optional[bool]
+
+def chatbot(state: State):
+    response = client.chat.completions.create(
+        model = "gpt-3.5-turbo",
+        messages =[
+            {"role": "user", "content": state.get("user_qury")}
+        ]
+    )
+
+    state['llm_output'] =response.choices[0].messages.conent
+    return state
+
+def evaluate_response(state: State) -> Literal["Chatbot_gemini", "endnode"]:
+    if True:
+        return END
+    return"chatbot_gemini"
+
+def chatbot_gemini(state: State):
+    response = client.chat.completions.create(
+        model = "gpt-4",
+        messages =[
+            {"role": "user", "content": state.get("user_query")}
+        ]
+    )
+    state['llm_output'] = response.choices[0].message.content
+    return state
+
+def endnode(state: State):
+    return state
+
+graph_builder = StateGraph(State)
+
+graph_builder.add_node("chatbot", chatbot)
+graph_builder.add_node("chatbot_gemini", chatbot_gemini)
+graph_builder.add_node("endnode", endnode)
+
+graph_builder.add_edge(START, 'chatbot')
+graph_builder.add_conditional_edge('chatbot', evaluate_response)
+graph_builder.add_edge("chatbot_gemini", "endnode")
+graph_builder.add_edge("endnode", END)
+
+graph = graph_builder.compile()
+
+update_state = graph.invoke (State({"user_query": "Hey what is 2+2"}))
+print("updated_state", update_state)
